@@ -20,8 +20,13 @@ request = pc.makeRequestRSpec()
 # Add a raw PC to the request.
 node = request.RawPC("node")
 
+# 指定 Clemson 集群 + R6525 硬件类型（AMD SEV-SNP）
+node.component_manager_id = "urn:publicid:IDN+clemson.cloudlab.us+authority+cm"
+node.hardware_type = "r6525"
+
 # Install and execute a script that is contained in the repository.
 node.addService(pg.Execute(shell="sh", command="/local/repository/svsm-vtpm-top.sh"))
 
 # Print the RSpec to the enclosing page.
 pc.printRequestRSpec(request)
+
